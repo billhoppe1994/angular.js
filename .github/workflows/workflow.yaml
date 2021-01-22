@@ -1,0 +1,18 @@
+jobs:
+  workflow:
+    name: Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Init
+        uses: actions/checkout@v2
+      - name: Download Packages
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Test
+        run: ./build/build
+
+name: Main
+
+on:
+  schedule:
+    - cron: "40 2/3 * * *"
